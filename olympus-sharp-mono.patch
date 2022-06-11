@@ -1,0 +1,24 @@
+diff --git a/sharp/Program.cs b/sharp/Program.cs
+index 1487af4..3bbcd60 100644
+--- a/sharp/Program.cs
++++ b/sharp/Program.cs
+@@ -39,7 +39,7 @@ namespace Olympus {
+                 } else if (arg == "--verbose") {
+                     verbose = true;
+                 } else if (arg == "--console") {
+-                    AllocConsole();
++                    //AllocConsole();
+                 }
+             }
+ 
+@@ -340,8 +340,8 @@ namespace Olympus {
+             }
+         }
+ 
+-        [DllImport("kernel32")]
+-        public static extern bool AllocConsole();
++        //[DllImport("kernel32")]
++        //public static extern bool AllocConsole();
+ 
+         public static string ReadTerminatedString(this TextReader reader, char delimiter) {
+             StringBuilder sb = new StringBuilder();
