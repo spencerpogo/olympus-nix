@@ -4,8 +4,9 @@
   };
 
   outputs = { self, nixpkgs }: let
+    system = "x86_64-linux"
     pkgs = nixpkgs.legacyPackages.${system};
   in {
-    packages.x86_64-linux.olympus = pkgs.callPackage ./olympus.nix {};
+    packages.${system}.olympus = pkgs.callPackage ./olympus.nix {};
   };
 }
