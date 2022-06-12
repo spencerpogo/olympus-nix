@@ -1,8 +1,15 @@
-with import <nixpkgs> {};
+{ buildDotnetModule
+, callPackage
+, dotnetCorePackages
+, fetchFromGitHub
+, lib
+, lua_5_1
+, lua51Packages
+, zip }:
 
-let nfd = (import ./nfd.nix);
-  lua-subprocess =  (import ./lua-subprocess.nix);
-  lsqlite3complete = (import ./lsqlite3complete.nix);
+let nfd = callPackage ./nfd.nix;
+  lua-subprocess =  callPackage ./lua-subprocess.nix;
+  lsqlite3complete = callPackage ./lsqlite3complete.nix;
 in buildDotnetModule rec {
   name = "olympus";
   version = "22.04.16.02";
@@ -32,7 +39,6 @@ in buildDotnetModule rec {
   buildInputs = [
     lua5_1
     lua51Packages.luarocks
-    gtk3
     nfd
     lua-subprocess
     lsqlite3complete

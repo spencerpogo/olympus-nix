@@ -1,4 +1,6 @@
-with import <nixpkgs> {};
+{ lua51Packages
+, lua_5_1
+, pkg-config }:
 
 lua51Packages.buildLuarocksPackage {
   pname = "nfd";

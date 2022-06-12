@@ -1,4 +1,7 @@
-with import <nixpkgs> {};
+{ lua51Packages
+, fetchzip
+, glibc
+, pkg-config }:
 
 lua51Packages.buildLuarocksPackage {
   pname = "lsqlite3complete";
