@@ -1,4 +1,6 @@
-with import <nixpkgs> {};
+{ fetchFromGitHub
+, lib
+, lua51Packages }:
 
 lua51Packages.buildLuarocksPackage {
   pname = "subprocess";

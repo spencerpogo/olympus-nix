@@ -1,5 +1,6 @@
-{ lua51Packages
-, lua_5_1
+{ fetchFromGitHub
+, lua51Packages
+, lua5_1
 , pkg-config }:
 
 lua51Packages.buildLuarocksPackage {
