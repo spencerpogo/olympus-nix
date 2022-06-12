@@ -11,9 +11,10 @@
 , mono
 , zip }:
 
-let nfd = callPackage ./nfd.nix;
-  lua-subprocess =  callPackage ./lua-subprocess.nix;
-  lsqlite3complete = callPackage ./lsqlite3complete.nix;
+let nfd = callPackage ./nfd.nix {};
+  _ = builtins.trace (builtins.typeOf nfd) 1;
+  lua-subprocess =  callPackage ./lua-subprocess.nix {};
+  lsqlite3complete = callPackage ./lsqlite3complete.nix {};
 in buildDotnetModule rec {
   name = "olympus";
   version = "22.04.16.02";
