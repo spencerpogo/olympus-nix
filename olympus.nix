@@ -1,10 +1,14 @@
 { buildDotnetModule
 , callPackage
+, curlFull
 , dotnetCorePackages
 , fetchFromGitHub
+, gnome
 , lib
-, lua_5_1
+, love
+, lua5_1
 , lua51Packages
+, mono
 , zip }:
 
 let nfd = callPackage ./nfd.nix;
