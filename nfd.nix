@@ -1,7 +1,4 @@
-{ fetchFromGitHub
-, lua51Packages
-, lua5_1
-, pkg-config }:
+{ fetchFromGitHub, lua51Packages, lua5_1, pkg-config, substituteAll, zenity }:
 
 lua51Packages.buildLuarocksPackage {
   pname = "nfd";
@@ -15,7 +12,12 @@ lua51Packages.buildLuarocksPackage {
     fetchSubmodules = true;
   };
   # use zenity because default gtk impl just crashes
-  patches = [ ./nfd-zenity.patch ];
+  patches = [
+    (substituteAll {
+      src = ./nfd-zenity.patch;
+      inherit zenity;
+    })
+  ];
   rockspecDir = "lua";
 
   extraVariables.LUA_LIBDIR = "${lua5_1}/lib";

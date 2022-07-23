@@ -32,3 +32,16 @@ index 503399d..2d0a7da 100644
           build_variables = {
              CFLAGS="$(CFLAGS)",
              LIBFLAG="$(LIBFLAG)",
+diff --git a/src/nfd_zenity.c b/src/nfd_zenity.c
+index 43ccc6d..3fcdea0 100644
+--- a/src/nfd_zenity.c
++++ b/src/nfd_zenity.c
+@@ -109,6 +109,8 @@ ZenityCommon(char**      command,
+         command[i] = tmp;
+     }
+ 
++    // caller always sets command[0] to "zenity"
++    command[0] = strdup("@zenity@/bin/zenity");
+     AddFiltersToCommandArgs(command, commandLen, filterList);
+ 
+     int byteCount = 0;

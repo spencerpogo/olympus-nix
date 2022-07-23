@@ -1,9 +1,8 @@
 { buildDotnetModule, callPackage, curlFull, dotnetCorePackages, fetchFromGitHub
-, gnome, lib, love, lua5_1, lua51Packages, mono, zip }:
+, lib, love, lua5_1, lua51Packages, mono, zip, zenity }:
 
 let
-  nfd = callPackage ./nfd.nix { };
-  _ = builtins.trace (builtins.typeOf nfd) 1;
+  nfd = callPackage ./nfd.nix { inherit zenity; };
   lua-subprocess = callPackage ./lua-subprocess.nix { };
   lsqlite3complete = callPackage ./lsqlite3complete.nix { };
 in buildDotnetModule rec {
@@ -57,7 +56,7 @@ in buildDotnetModule rec {
     substituteAllInPlace $out/bin/olympus
     # zenity is required for nfd
     wrapProgram $out/bin/olympus \
-      --prefix PATH : ${lib.makeBinPath [ love gnome.zenity ]} \
+      --prefix PATH : ${lib.makeBinPath [ love ]} \
       --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ curlFull ]}
   '';
 }
