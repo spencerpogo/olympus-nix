@@ -5,8 +5,10 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      packages.${system}.olympus =
-        pkgs.callPackage ./olympus.nix { inherit (pkgs.gnome) zenity; };
-    };
+      sharp = pkgs.callPackage ./sharp.nix { };
+      olympus = pkgs.callPackage ./olympus.nix {
+        inherit sharp;
+        inherit (pkgs.gnome) zenity;
+      };
+    in { packages.${system} = { inherit sharp olympus; }; };
 }

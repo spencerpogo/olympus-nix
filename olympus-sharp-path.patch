@@ -1,0 +1,22 @@
+diff --git a/src/sharp.lua b/src/sharp.lua
+index bdb0f5b..df05544 100644
+--- a/src/sharp.lua
++++ b/src/sharp.lua
+@@ -78,7 +78,7 @@ local function sharpthread()
+             exename = "Olympus.Sharp.bin.osx"
+         end
+ 
+-        local exe = fs.joinpath(cwd, exename)
++        local exe = "@sharp@/bin/sharp"
+ 
+         local logpath = os.getenv("OLYMPUS_SHARP_LOGPATH") or nil
+         if logpath and #logpath == 0 then
+@@ -100,7 +100,7 @@ local function sharpthread()
+             stdin = subprocess.PIPE,
+             stdout = subprocess.PIPE,
+             stderr = logpath,
+-            cwd = cwd
++            cwd = "/"
+         }
+ 
+         if debuggingSharp then
