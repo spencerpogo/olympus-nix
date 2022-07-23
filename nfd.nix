@@ -21,7 +21,6 @@ lua51Packages.buildLuarocksPackage {
   rockspecDir = "lua";
 
   extraVariables.LUA_LIBDIR = "${lua5_1}/lib";
-  nativeBuildInputs = [ pkg-config ];
 
   fixupPhase = ''
     find $out -name nfd_zenity.so -execdir mv {} nfd.so \;
