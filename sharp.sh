@@ -1,1 +1,1 @@
-mono @out@/sharp/Olympus.Sharp.exe "$@"
+@mono@/bin/mono @out@/sharp/Olympus.Sharp.exe "$@"

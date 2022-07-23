@@ -39,22 +39,24 @@ in buildDotnetModule rec {
     dotnetInstallHook
     mv $out/lib $out/sharp
     install -m755 ${./sharp.sh} $out/sharp/Olympus.Sharp.bin.x86_64
+    export mono=${mono}
     substituteAllInPlace $out/sharp/Olympus.Sharp.bin.x86_64
-    wrapProgram $out/sharp/Olympus.Sharp.bin.x86_64 \
-      --prefix PATH : ${lib.makeBinPath [ mono ]}
 
-    # setup love
+    # copy lua deps
     cp ${nfd}/lib/lua/5.1/nfd.so $out
     cp ${lua-subprocess}/lib/lua/5.1/subprocess.so $out
     cp ${lsqlite3complete}/lib/lua/5.1/lsqlite3complete.so $out
+
+    # build love zip
     cd src
     zip -r $out/olympus.love .
+
+    # create bin wrapper
     mkdir -p $out/bin
     install -m755 ${./olympus.sh} $out/bin/olympus
+    export love=${love}
     substituteAllInPlace $out/bin/olympus
-    # zenity is required for nfd
     wrapProgram $out/bin/olympus \
-      --prefix PATH : ${lib.makeBinPath [ love ]} \
       --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ curlFull ]}
   '';
 }
