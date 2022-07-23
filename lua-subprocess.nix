@@ -1,6 +1,4 @@
-{ fetchFromGitHub
-, lib
-, lua51Packages }:
+{ fetchFromGitHub, lib, lua51Packages }:
 
 lua51Packages.buildLuarocksPackage {
   pname = "subprocess";
@@ -15,7 +13,8 @@ lua51Packages.buildLuarocksPackage {
 
   meta = {
     homepage = "https://github.com/xlq/lua-subprocess";
-    description = "A Lua module written in C that allows you to create child processes and communicate with them.";
+    description =
+      "A Lua module written in C that allows you to create child processes and communicate with them.";
     license = lib.licenses.mit;
   };
 }

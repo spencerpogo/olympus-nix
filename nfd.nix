@@ -27,7 +27,8 @@ lua51Packages.buildLuarocksPackage {
 
   meta = {
     homepage = "https://github.com/Alloyed/nativefiledialog/tree/master/lua";
-    description = "A tiny, neat C library that portably invokes native file open and save dialogs.";
+    description =
+      "A tiny, neat C library that portably invokes native file open and save dialogs.";
     license.fullName = "zlib";
   };
 }

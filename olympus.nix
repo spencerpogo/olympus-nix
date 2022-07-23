@@ -1,20 +1,11 @@
-{ buildDotnetModule
-, callPackage
-, curlFull
-, dotnetCorePackages
-, fetchFromGitHub
-, gnome
-, lib
-, love
-, lua5_1
-, lua51Packages
-, mono
-, zip }:
+{ buildDotnetModule, callPackage, curlFull, dotnetCorePackages, fetchFromGitHub
+, gnome, lib, love, lua5_1, lua51Packages, mono, zip }:
 
-let nfd = callPackage ./nfd.nix {};
+let
+  nfd = callPackage ./nfd.nix { };
   _ = builtins.trace (builtins.typeOf nfd) 1;
-  lua-subprocess =  callPackage ./lua-subprocess.nix {};
-  lsqlite3complete = callPackage ./lsqlite3complete.nix {};
+  lua-subprocess = callPackage ./lua-subprocess.nix { };
+  lsqlite3complete = callPackage ./lsqlite3complete.nix { };
 in buildDotnetModule rec {
   name = "olympus";
   version = "22.04.16.02";
@@ -39,18 +30,12 @@ in buildDotnetModule rec {
   dotnet-sdk = dotnetCorePackages.sdk_5_0;
   dotnet-runtime = dotnetCorePackages.runtime_5_0;
   # if this isn't set, nix will try to link random things into $out/bin
-  executables = [];
+  executables = [ ];
 
-  buildInputs = [
-    lua5_1
-    lua51Packages.luarocks
-    nfd
-    lua-subprocess
-    lsqlite3complete
-    zip
-  ];
+  buildInputs =
+    [ lua5_1 lua51Packages.luarocks nfd lua-subprocess lsqlite3complete zip ];
 
-  installPhase  = ''
+  installPhase = ''
     dotnetInstallHook
     mkdir -p $out/bin
     # setup sharp
