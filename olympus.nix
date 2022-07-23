@@ -35,10 +35,8 @@ in buildDotnetModule rec {
     [ lua5_1 lua51Packages.luarocks nfd lua-subprocess lsqlite3complete zip ];
 
   installPhase = ''
-    dotnetInstallHook
-    mkdir -p $out/bin
     # setup sharp
-    ls -lR $out
+    dotnetInstallHook
     mv $out/lib $out/sharp
     install -m755 ${./sharp.sh} $out/sharp/Olympus.Sharp.bin.x86_64
     substituteAllInPlace $out/sharp/Olympus.Sharp.bin.x86_64
@@ -49,9 +47,9 @@ in buildDotnetModule rec {
     cp ${nfd}/lib/lua/5.1/nfd.so $out
     cp ${lua-subprocess}/lib/lua/5.1/subprocess.so $out
     cp ${lsqlite3complete}/lib/lua/5.1/lsqlite3complete.so $out
-    cp -r sharp/bin/Release/net452 $out/sharp
     cd src
     zip -r $out/olympus.love .
+    mkdir -p $out/bin
     install -m755 ${./olympus.sh} $out/bin/olympus
     substituteAllInPlace $out/bin/olympus
     # zenity is required for nfd
