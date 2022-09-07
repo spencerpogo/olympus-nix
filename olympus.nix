@@ -31,6 +31,7 @@ in stdenvNoCC.mkDerivation rec {
   dontConfigure = true;
 
   buildInputs = [
+    sharp
     makeWrapper
     lua5_1
     lua51Packages.luarocks
@@ -38,10 +39,6 @@ in stdenvNoCC.mkDerivation rec {
     lua-subprocess
     lsqlite3complete
     zip
-  ];
-
-  nativeBuildInputs = [
-    sharp
   ];
 
   buildPhase = ''
