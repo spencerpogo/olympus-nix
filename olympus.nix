@@ -12,8 +12,8 @@ in stdenvNoCC.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "EverestAPI";
     repo = "Olympus";
-    rev = "1d02bcb1f1fabc6ccfefdec6262889ca7207338c";
-    hash = "sha256-awrB/M9sCA9qCCo0JtCkrA2bI2wdtesmUm5IWRKVdLE=";
+    rev = "9b8043c180c0602b5c24ce24c092a124c6b70dbf";
+    hash = "sha256-Nj/aFoFdP2aED492e++u/tfLqNE+DgWWNyNSM3aykf4=";
     fetchSubmodules = true;
   };
 
