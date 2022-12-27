@@ -29,34 +29,15 @@ in stdenvNoCC.mkDerivation rec {
   '';
 
   dontConfigure = true;
-
-  buildInputs = [
-    makeWrapper
-    lua5_1
-    lua51Packages.luarocks
-    nfd
-    lua-subprocess
-    lsqlite3complete
-    zip
-  ];
-
-  runtimeDeps = [ sharp ];
-
-  buildPhase = ''
-    runHook preBuild
-
-    cd src
-    zip -9 -r olympus.love .
-
-    runHook postBuild
-  '';
+  dontBuild = true;
+  buildInputs = [ makeWrapper ];
 
   installPhase = ''
     mkdir $out
     cp ${nfd}/lib/lua/5.1/nfd.so $out
     cp ${lua-subprocess}/lib/lua/5.1/subprocess.so $out
     cp ${lsqlite3complete}/lib/lua/5.1/lsqlite3complete.so $out
-    cp olympus.love $out
+    cp -r ./src/ $out/olympus.love/
 
     # create bin wrapper
     mkdir -p $out/bin
