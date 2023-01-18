@@ -1,5 +1,5 @@
 { callPackage, curlFull, fetchFromGitHub, lib, love, lua5_1, lua51Packages
-, makeWrapper, sharp, stdenvNoCC, substituteAll, zip, zenity }:
+, makeWrapper, sharp, stdenvNoCC, substituteAll, zenity }:
 
 let
   nfd = callPackage ./nfd.nix { inherit zenity; };
@@ -34,6 +34,7 @@ in stdenvNoCC.mkDerivation rec {
 
   installPhase = ''
     mkdir $out
+
     cp ${nfd}/lib/lua/5.1/nfd.so $out
     cp ${lua-subprocess}/lib/lua/5.1/subprocess.so $out
     cp ${lsqlite3complete}/lib/lua/5.1/lsqlite3complete.so $out
