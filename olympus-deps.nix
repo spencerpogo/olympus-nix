@@ -1,4 +1,4 @@
-{ fetchNuGet }: [
+{fetchNuGet}: [
   (fetchNuGet {
     pname = "Microsoft.NETFramework.ReferenceAssemblies";
     version = "1.0.0";
@@ -36,8 +36,8 @@
   })
   (fetchNuGet {
     pname = "Newtonsoft.Json";
-    version = "12.0.3";
-    sha256 = "17dzl305d835mzign8r15vkmav2hq8l6g7942dfjpnzr17wwl89x";
+    version = "13.0.1";
+    sha256 = "sha256-K2tSVW4n4beRPzPu3rlVaBEMdGvWSv/3Q1fxaDh4Mjo=";
   })
   (fetchNuGet {
     pname = "YamlDotNet";

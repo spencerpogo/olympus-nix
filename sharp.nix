@@ -1,27 +1,34 @@
-{ buildDotnetModule, callPackage, dotnetCorePackages, fetchFromGitHub, lib, mono
+{
+  buildDotnetModule,
+  callPackage,
+  dotnetCorePackages,
+  fetchFromGitHub,
+  lib,
+  mono,
 }:
-
-buildDotnetModule rec {
+let 
+  inherit (callPackage ./dotnet-5.0.nix {}) sdk_5_0 runtime_5_0;
+in buildDotnetModule rec {
   name = "olympus-sharp";
-  version = "22.04.16.02";
+  version = "23.02.16.02";
 
   src = fetchFromGitHub {
     owner = "EverestAPI";
     repo = "Olympus";
-    rev = "1d02bcb1f1fabc6ccfefdec6262889ca7207338c";
-    hash = "sha256-awrB/M9sCA9qCCo0JtCkrA2bI2wdtesmUm5IWRKVdLE=";
+    rev = "4f20467e0e12801ec0bd5d7e9fbc26a4c7eb9333";
+    hash = "sha256-FR6KEB5T0FbKOo81U9+NLFeQ2BpjQhc1O7goXLZwCUc=";
     fetchSubmodules = true;
   };
 
   # patch to make sharp run under mono
-  patches = [ ./sharp-mono.patch ];
+  patches = [./sharp-mono.patch];
 
   projectFile = "sharp/Olympus.Sharp.csproj";
   nugetDeps = ./olympus-deps.nix;
-  dotnet-sdk = dotnetCorePackages.sdk_5_0;
-  dotnet-runtime = dotnetCorePackages.runtime_5_0;
+  dotnet-sdk = sdk_5_0;
+  dotnet-runtime = runtime_5_0;
   # if this isn't set, nix will try to link random things into $out/bin
-  executables = [ ];
+  executables = [];
 
   installPhase = ''
     # setup sharp

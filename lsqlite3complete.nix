@@ -1,5 +1,9 @@
-{ lua51Packages, fetchzip, glibc, pkg-config }:
-
+{
+  lua51Packages,
+  fetchzip,
+  glibc,
+  pkg-config,
+}:
 lua51Packages.buildLuarocksPackage {
   pname = "lsqlite3complete";
   version = "0.9.5-1";
@@ -13,8 +17,8 @@ lua51Packages.buildLuarocksPackage {
     hash = "sha256-lNiYaqZPw31Y8jzW8i7mETtRh9G3/q5EwckJeCg3EL8=";
   };
 
-  propagatedBuildInputs = [ glibc.out ];
-  nativeBuildInputs = [ pkg-config ];
+  propagatedBuildInputs = [glibc.out];
+  nativeBuildInputs = [pkg-config];
 
   meta = {
     homepage = "http://lua.sqlite.org/";

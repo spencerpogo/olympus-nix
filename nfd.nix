@@ -1,5 +1,11 @@
-{ fetchFromGitHub, lua51Packages, lua5_1, pkg-config, substituteAll, zenity }:
-
+{
+  fetchFromGitHub,
+  lua51Packages,
+  lua5_1,
+  pkg-config,
+  substituteAll,
+  zenity,
+}:
 lua51Packages.buildLuarocksPackage {
   pname = "nfd";
   version = "scm-1";
@@ -21,7 +27,7 @@ lua51Packages.buildLuarocksPackage {
   rockspecDir = "lua";
 
   extraVariables.LUA_LIBDIR = "${lua5_1}/lib";
-  nativeBuildInputs = [ pkg-config ];
+  nativeBuildInputs = [pkg-config];
 
   fixupPhase = ''
     find $out -name nfd_zenity.so -execdir mv {} nfd.so \;
@@ -29,8 +35,7 @@ lua51Packages.buildLuarocksPackage {
 
   meta = {
     homepage = "https://github.com/Alloyed/nativefiledialog/tree/master/lua";
-    description =
-      "A tiny, neat C library that portably invokes native file open and save dialogs.";
+    description = "A tiny, neat C library that portably invokes native file open and save dialogs.";
     license.fullName = "zlib";
   };
 }
